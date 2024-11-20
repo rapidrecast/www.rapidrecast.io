@@ -1,0 +1,65 @@
+{{ define "main" }}
+<section class="section container-fluid mt-n3 pb-3">
+  <div class="row justify-content-center">
+    <div class="col-lg-12 text-center">
+      <h1>{{ .Title }}</h1>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-12 col-xl-17">
+      <p class="lead">{{ .Params.lead | safeHTML }}</p>
+      {{ .Content }}
+    </div>
+    <div class="col-lg-12 col-xl-17">
+      <h2>We would love to hear what you have to say!</h2>
+      <form id="contactForm">
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name" required><br><br>
+
+          <label for="company">Company:</label><br>
+          <input type="text" id="company" name="company"><br><br>
+
+          <label for="phone">Phone:</label><br>
+          <input type="text" id="phone" name="phone" ><br><br>
+
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email" required><br><br>
+
+          <input type="submit" value="Submit">
+      </form>
+
+      <p id="responseMessage"></p> <!-- To display a success or error message -->
+
+      <script>
+          document.getElementById("contactForm").addEventListener("submit", function(event) {
+              event.preventDefault(); // Prevent the form from submitting the traditional way
+
+              // Get the form data
+              const formData = new FormData(this);
+
+              // Convert form data to query parameters
+              const queryParams = new URLSearchParams(formData).toString();
+
+              // The API URL with query parameters
+              const apiUrl = "https://y2fwbbcgk254lbavq3bwmrzqqe0ldzqs.lambda-url.eu-west-1.on.aws/?" + queryParams;
+
+              // Send an AJAX request using Fetch API
+              fetch(apiUrl, {
+                  method: "POST", // Ensure the request method is POST
+                  body: formData
+              })
+              .then(response => response.json())
+              .then(data => {
+                  // Handle the JSON response here
+                  document.getElementById("responseMessage").innerText = "Form submitted successfully!";
+              })
+              .catch(error => {
+                  // Handle any errors
+                  document.getElementById("responseMessage").innerText = "There was an error submitting the form.";
+                  console.error("Error:", error);
+              });
+          });
+      </script>
+    </div>
+  </div>
+</section>
+{{ end }}

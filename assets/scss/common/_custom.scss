@@ -1,0 +1,14 @@
+// Put your custom SCSS code here
+
+.table-responsive table {
+  table-layout: auto;;
+}
+
+.table-responsive th, .table-responsive td {
+  min-width: 100px; /* Minimum width */
+  max-width: 1200px; /* Maximum width */
+  word-wrap: break-word; /* Break long words */
+  white-space: normal; /* Enable text wrapping */
+  overflow: hidden; /* Hide overflow content */
+  text-overflow: ellipsis; /* Optional: to indicate text overflow */
+}
