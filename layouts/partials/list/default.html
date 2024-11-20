@@ -17,11 +17,13 @@
     {{ end }}
   </div>
 
-  <div class="mt-2">
+  <div class="mt-2 flex flex-col">
     <a class="read-more" href="{{ .Permalink }}">
+    <!-- <a class="read-more" href="{{ .Permalink }}" style="display: inline-block;"> -->
       {{ i18n "readMore" }}
-      <span class="w-4 h-4 stroke-2">
-        {{ partial "utils/icon" "arrow-right" }}
+      <!-- <span class="w-4 h-4 shrink-0" style="display: inline-block;"> -->
+      <!-- <span class="stroke-2" style="width: 10px;"> -->
+        <!-- {{ partial "utils/icon" "arrow-right" }} -->
       </span>
     </a>
   </div>
