@@ -2,8 +2,8 @@
 title: "RapidRecast 0.1.0"
 description: "First release of RapidRecast"
 summary: ""
-date: 2024-11-26T10:00:00+00:00
-lastmod: 2024-11-26T10:00:00+00:00
+date: 2024-11-25T10:00:00+00:00
+lastmod: 2024-11-25T10:00:00+00:00
 draft: false
 weight: 50
 categories: []

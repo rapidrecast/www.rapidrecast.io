@@ -2,8 +2,8 @@
 title: "Releases page"
 description: "RapidRecast Release Downloads"
 summary: ""
-date: 2023-09-07T16:21:44+02:00
-lastmod: 2023-09-07T16:21:44+02:00
+date: 2024-11-25T10:00:00+00:00
+lastmod: 2024-11-25T10:00:00+00:00
 draft: false
 weight: 50
 categories: []
