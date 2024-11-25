@@ -1,6 +1,6 @@
 ---
-title: "Github workflow for releasing in Rust"
-description: "Release your Rust project on Github with this one simple snippet"
+title: "Release your Rust!"
+description: "Release your Rust project on Github with this simple workflow"
 summary: "In this post, you will learn how to release your Rust project while conveniently handling release versions."
 date: 2024-11-25T10:00:00+00:00
 lastmod: 2024-11-25T10:00:00+00:00
@@ -20,26 +20,24 @@ seo:
 
 # What is a release workflow
 
-As you develop software, you need to have a common understanding with the user of which point in time of development you are talking about.
-We call these points in time versions, and they can take on many forms, from names and single numbers, to more structured formats including dates.
+As you develop software, you need to share a common understanding with the user of which point in time of development you are talking about.
+We call these points in time *versions*, and they can take on many forms, from names and single numbers to more structured formats, including dates.
 
-As you develop software, you will want to have a very convenient way to increase the version number during a release so that you don't make a mistake anywhere.
+As you develop software, you will want a convenient way to increase the version number during a release so that you don't make a mistake anywhere.
 
-That is what a release pipeline is for - you indicate the type of version change you want to make to the software and the pipeline takes care of the rest.
+That is what a release pipeline is for - you indicate the version change you want to make to the software, and the pipeline takes care of the rest.
 
-I am sharing with you a release workflow I have made and used across a few projects, including RapidRecast.
+I am sharing with you a release workflow I have created and used across several projects, including RapidRecast.
 
 You should be able to copy it as-is, include a Personal Access Token under the project secrets as `RELEASE_TOKEN` and benefit from a convenient release cycle.
 
 # Pre-release workflow
 
-The pre-release workflow needs to be run manually from Github Actions and bumps the local version of your Cargo project.
+The pre-release workflow must be run manually from Github Actions and bumps the local version of your Cargo project.
 
-You can modify this step slightly so it pushes to to [crates.io](https://crates.io).
+You can modify this step slightly so it pushes to [crates.io](https://crates.io).
 
-The result of running this will be a new tag in your repository with the new bumped version on it.
-
-Pre-release workflow
+Running this workflow will result in a new tag in your repository with the new bumped version.
 
 ```yaml
 name: Pre-release to trigger before github release
@@ -98,10 +96,8 @@ jobs:
 
 # Release workflow
 
-The release workflow should be run from the Github Releases page of your project.
-Once you have created a releases, the workflow will trigger and attach all platorm artifacts you want to include.
-
-Release trigger workflow
+After completing the Pre-Release workflow, you can start a release from your Github project page.
+When you have created the release against the new version tag, the Release workflow will trigger and attach all platform artifacts you want to include.
 
 ```yaml
 name: Release that is triggered from github releases
@@ -184,8 +180,8 @@ jobs:
 
 # Using the workflow
 
-The 2 workflows assume you are using Cargo and semantic versioining, and building a binary.
+The two workflows assume you are using Cargo and semantic versioning and building a binary.
 
-They can be modified if you are building a dynamic library as well, by pushing to crates and including different artifacts.
+If you are making multiple binaries, open-source, or dynamic libraries, you can modify the same workflows to your needs.
 
-Now that you have this workflow, you can add it to any Rust project you have for effortless releases at the click of a button.
+Now that you have this workflow, you can add it to any Rust project for effortless releases at the click of a button.
