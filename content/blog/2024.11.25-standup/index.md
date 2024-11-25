@@ -24,16 +24,23 @@ The theme of this week is to get the product into people's hands so I can get as
 
 Rocky start, I wanted to do too much at once.
 
-marketing
+## Marketing
+
 - my comittment to myself to push out content regularly, including video
 - moved website from old domain to new
-Admin
+
+## Admin
+
 - set up the company, addresses, banking account, trademark application
-Product
+
+## Product
+
 - got the codebase into a working state
 - re-thought how the components fit together and came up with a much better design from a testability, operability, and maintainability perspective
 - fixed frustrations with website, like arrow SVG in the docs page taking up entire page (hack workaround)
-Sales
+
+## Sales
+
 - Did a bit of research into how to approach this, will blog about findings and approach
 
 # What I didn't achieve
@@ -44,17 +51,24 @@ Sales
 
 # What I am doing this week
 
-Marketing
+## Marketing
+
 - More content, focused largely on market positioning and problem space
 - Might work on a video if I have time, this is going to be short and about what streaming is. I want to utilise green screen this time and get a potrait view of the video.
 - Docs pages
-Admin
+
+## Admin
+
 - Get a better grasp of legal and finance situation
-Product
+
+## Product
+
 - Cloud offering this week, free
 - Rearchitect so that I dont get swamped with tech debt (this could be a bad decision, but I think it is achievable in a few hours)
 - As metnioned in marketing, docs
-Sales
+
+## Sales
+
 - At least some outbound
 - Refined pitch and offering
 
