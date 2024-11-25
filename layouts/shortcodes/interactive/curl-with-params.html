@@ -1,0 +1,68 @@
+<!-- https://gohugo.io/functions/partials/include/ -->
+
+<div class="p-4 border rounded-lg shadow">
+  <h2 class="text-lg font-bold mb-4">Generate Curl Commands</h2>
+  
+  <!-- Topic Name Input -->
+  <label for="topic" class="block text-sm font-medium text-gray-700">Topic Name</label>
+  <input 
+    id="topic" 
+    type="text" 
+    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+    placeholder="Enter topic name"
+    oninput="updateCurlCommands()" />
+
+  <!-- Message Content Input -->
+  <label for="message" class="block text-sm font-medium text-gray-700 mt-4">Message Content</label>
+  <textarea 
+    id="message" 
+    rows="4" 
+    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+    placeholder="Enter message content"
+    oninput="updateCurlCommands()"></textarea>
+
+  <!-- Dynamic Curl Commands -->
+  <h3 class="text-sm font-medium text-gray-700 mt-6">Generated Curl Commands</h3>
+  <div class="expressive-code">
+    <figure class="frame is-terminal not-content">
+      <figcaption class="header">
+        <span class="title">Curl Commands</span>
+      </figcaption>
+      <div class="highlight">
+        <div class="copy">
+          <button title="Copy to clipboard" class="btn-copy" aria-label="Clipboard button">
+            <div></div>
+          </button>
+        </div>
+        <pre tabindex="0" class="chroma">
+          <code id="curlCommand" class="language-bash" data-lang="bash">
+<span class="line"><span class="cl"># POST a message to the topic
+curl -X POST http://example.com/api/topics/{topic} -H "Content-Type: application/json" -d '{"message": "{message}"}'
+
+# GET messages from the topic
+curl -X GET http://example.com/api/topics/{topic}/messages</span></span>
+          </code>
+        </pre>
+      </div>
+    </figure>
+  </div>
+</div>
+
+<script>
+
+  function updateCurlCommands() {
+    // Get the values from the input fields
+    const url = "http://cloud.rapidrecast.io";
+    const topic = document.getElementById("topic").value || "{topic}";
+    const message = document.getElementById("message").value || "{message}";
+    
+    // Update the curl command dynamically
+    const curlCommand = `# POST a message to the topic
+curl -X POST ${url}/${topic} -H "Content-Type: application/json" -d '${message}'
+  
+# GET messages from the topic
+curl -X GET ${url}/${topic}`;
+    document.getElementById("curlCommand").innerText = curlCommand;
+  }
+</script>
+  

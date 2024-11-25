@@ -37,3 +37,11 @@ Find the downloads below.
 | Mac x86_64 (Intel) | [.tar.gz](/release/0.1.0/rapidrecast-v0.1.0-x86_64-apple-darwin.tar.gz) [.zip](/release/0.1.0/rapidrecast-v0.1.0-x86_64-apple-darwin.zip) |
 | Mac aarch64 (M1/M2/M3) | [.tar.gz](/release/0.1.0/rapidrecast-v0.1.0-aarch64-apple-darwin.tar.gz) [.zip](/release/0.1.0/rapidrecast-v0.1.0-aarch64-apple-darwin.zip) |
 | Linux x86_64 | [.tar.gz](/release/0.1.0/rapidrecast-v0.1.0-x86_64-unknown-linux-gnu.tar.gz) [.zip](/release/0.1.0/rapidrecast-v0.1.0-x86_64-unknown-linux-gnu.zip) |
+
+```bash
+This is an example code block
+```
+
+{{< interactive/curl-with-params >}}
+
+Updated
