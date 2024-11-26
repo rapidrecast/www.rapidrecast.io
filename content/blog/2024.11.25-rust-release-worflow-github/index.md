@@ -8,7 +8,8 @@ draft: false
 weight: 50
 categories: []
 tags: [rust]
-contributors: []
+contributors:
+  - Hugh Kaznowski
 pinned: false
 homepage: false
 seo:

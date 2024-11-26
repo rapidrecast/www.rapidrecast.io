@@ -2,6 +2,14 @@
 
 <div class="p-4 border rounded-lg shadow">
   <h2 class="text-lg font-bold mb-4">Generate Curl Commands</h2>
+
+  <label for="url" class="block text-sm font-medium text-gray-700">URL</label>
+  <input 
+    id="url" 
+    type="text" 
+    class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+    placeholder="Enter URL"
+    oninput="updateCurlCommands()" />
   
   <!-- Topic Name Input -->
   <label for="topic" class="block text-sm font-medium text-gray-700">Topic Name</label>
@@ -22,7 +30,6 @@
     oninput="updateCurlCommands()"></textarea>
 
   <!-- Dynamic Curl Commands -->
-  <h3 class="text-sm font-medium text-gray-700 mt-6">Generated Curl Commands</h3>
   <div class="expressive-code">
     <figure class="frame is-terminal not-content">
       <figcaption class="header">
@@ -37,10 +44,10 @@
         <pre tabindex="0" class="chroma">
           <code id="curlCommand" class="language-bash" data-lang="bash">
 <span class="line"><span class="cl"># POST a message to the topic
-curl -X POST http://example.com/api/topics/{topic} -H "Content-Type: application/json" -d '{"message": "{message}"}'
+curl -X POST http://cloud.rapidrecast.io/{topic} -H "Content-Type: application/json" -d '{message}'
 
 # GET messages from the topic
-curl -X GET http://example.com/api/topics/{topic}/messages</span></span>
+curl -X GET http://cloud.rapidrecast.io/{topic}</span></span>
           </code>
         </pre>
       </div>
@@ -52,7 +59,7 @@ curl -X GET http://example.com/api/topics/{topic}/messages</span></span>
 
   function updateCurlCommands() {
     // Get the values from the input fields
-    const url = "http://cloud.rapidrecast.io";
+    const url = document.getElementById("url").value || "http://cloud.rapidrecast.io";
     const topic = document.getElementById("topic").value || "{topic}";
     const message = document.getElementById("message").value || "{message}";
     
