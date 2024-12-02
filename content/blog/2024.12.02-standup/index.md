@@ -1,9 +1,9 @@
 ---
-title: "Weekly Report - 2024/11/25"
+title: "Weekly Report - 2024/12/02"
 description: "Weekly report of progress and prorities"
 summary: "Have a look at my weekly report on where I am with progress and focus."
-date: 2024-11-25T12:15:00+00:00
-lastmod: 2024-11-25T12:15:00+00:00
+date: 2024-12-02T10:00:00+00:00
+lastmod: 2024-12-02T10:10:00+00:00
 draft: false
 weight: 50
 categories: []
@@ -19,58 +19,63 @@ seo:
   noindex: false # false (default) or true
 ---
 
-The theme of this week is to get the product into people's hands so I can get as much feedback as possible.
+The theme of this week is still to get the product into people's hands so I can get as much feedback as possible.
 
 # What I achieved
 
-Rocky start, I wanted to do too much at once.
-
 ## Marketing
 
-- my comittment to myself to push out content regularly, including video
-- moved website from old domain to new
+- Learned Adobe Animate.
+- Got feedback that I need to focus more on core offering instead of progress updates and non-criticial information.
+- Figured out the greenscreen for OBS.
+- Decided to create a Linkedin community for [Realtime Streaming APIs](https://www.linkedin.com/groups/13118544/). 
+  - This is an un-branded community where I will post knowledge and people can share their perspective without a strong brand affiliation. Other brands are welcome to join.
+- Started focusing on [Bluesky](https://bsky.app/profile/rapidrecast.io) to get a community and following going.
 
 ## Admin
 
-- set up the company, addresses, banking account, trademark application
+- Brand image is in motion. Shoutout to Jaime who selflessly offered and delivered a brand logo and colour scheme for me  - truly caring about employees through and through.
+- Learned I need to be much more protective of my time: It is so easy to say "yes" to a call, catchup, outing, but they soon add up and make a very disruptive week.
+- Learned I need to make time for myself or I get cranky - seemingly trivial, yet quite important.
 
 ## Product
 
-- got the codebase into a working state
-- re-thought how the components fit together and came up with a much better design from a testability, operability, and maintainability perspective
-- fixed frustrations with website, like arrow SVG in the docs page taking up entire page (hack workaround)
+- Solved a gnarly bug with my API where connections would be swallowed because of Tokio's async scheduler not picking up a task.
+- Added more tests to prevent regressions from happening again.
+- Put a box up on Hetzner for a free offering of the product, available from `cloud.rapidrecast.io`.
 
 ## Sales
 
-- Did a bit of research into how to approach this, will blog about findings and approach
+- Made 20 outbound messages, mostly sourced from [Growth List](https://growthlist.co/london-startups/). Zero responses - will follow up more and try to tackle viable companies.
+- Got very valuable feedback from [Ignacio Paz](https://www.linkedin.com/in/ignaciopaz87/) that I should go a bit easier on the outbound, so as not to intimidate potential users.
+- I have a very exciting exploratory call this week, sourced from a friend facing the problem I solve.
+- Created a [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSeMRyOrgXcMiOKIVaDRqlkzsEqS-MfQD542om8TC446gvSK5A/viewform?usp=sf_link) for problem feedback.
 
 # What I didn't achieve
 
-- I wanted to do 30 outbound messages a day; I did zero. Fortunately I have done some outbound messages in the past so I have some idea of what it looks like. I also have a configured CRM with people to follow up with and I have populated it with about 70 people.
-- I wanted to do a live stream of coding; I have not done a live stream because of how hectic things are, with admin being the most disruptive aspect. Unlikely to do live streams in near future as I benefit from those being more focused at the moment.
-- I wanted to sort out my brand graphics; I have research fiverr people doing this service but not been in contact with anyone yet. I already have made a fair amout of writing/research into what I want my brand to represent and feel like.
+- A cold outbound lead - still working towards this.
+- My cloud offering still isn't at a place where I want it to be, as there are a few issues remaining.
 
 # What I am doing this week
 
 ## Marketing
 
-- More content, focused largely on market positioning and problem space
-- Might work on a video if I have time, this is going to be short and about what streaming is. I want to utilise green screen this time and get a potrait view of the video.
-- Docs pages
+- Much more focused content, centered around use cases. I will be following the patterns for social posts: story telling, teaching, and personality. 
 
 ## Admin
 
-- Get a better grasp of legal and finance situation
+- Get a better grasp of legal and finance situation.
+- Manage time better to have a clearer separation between work and non-work.
 
 ## Product
 
-- Cloud offering this week, free
-- Rearchitect so that I dont get swamped with tech debt (this could be a bad decision, but I think it is achievable in a few hours)
-- As metnioned in marketing, docs
+- Cloud offering this week, free.
+- Configuration API that allows to set how APIs and queues behave.
 
 ## Sales
 
-- At least some outbound
-- Refined pitch and offering
+- More cold sales outbound.
+- More refinement of pitch.
+- Working towards demos and demo videos.
 
 Till next time folks!
