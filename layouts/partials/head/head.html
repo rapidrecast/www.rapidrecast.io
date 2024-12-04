@@ -2,29 +2,32 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {{- if templates.Exists "partials/head/cookiebot.html" }}
-    {{- partial "head/cookiebot.html" . }}
-  {{- end }}
   {{- if templates.Exists "partials/head/resource-hints.html" }}
     {{- partial "head/resource-hints" . }}
   {{- end }}
+  <meta name="debug-script-header-priorit">
   {{- if templates.Exists "partials/head/script-header-priority.html" }}
     {{- partial "head/script-header-priority" . }}
   {{- end }}
+  <meta name="debug-stylesheet">
   {{- if templates.Exists "partials/head/stylesheet.html" }}
     {{- partialCached "head/stylesheet" . }}
   {{- end }}
+  <meta name="debug-seo">
   {{- if templates.Exists "partials/head/seo.html" }}
     {{- partial "head/seo" . }}
   {{- else if templates.Exists "partials/head/seo-default.html" }}
     {{- partial "head/seo-default" . }}
   {{- end }}
+  <meta name="debug-script-header">
   {{- if templates.Exists "partials/head/script-header.html" }}
     {{- partial "head/script-header" . }}
   {{- end }}
+  <meta name="debug-custom-head">
   {{- if templates.Exists "partials/head/custom-head.html" }}
     {{- partial "head/custom-head" . }}
   {{- end }}
+  <meta name="debug-google-analytics">
   {{- if templates.Exists "partials/head/google-analytics.html" }}
     {{- partial "head/google-analytics" . }}
   {{- end }}

@@ -220,7 +220,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold text-gray-900 dark:text-gray-300 mb-5 pt-2;
+    @apply bg-red-800 font-bold text-gray-900 dark:text-gray-300 mb-5 pt-2;
   }
   
   h1 {
