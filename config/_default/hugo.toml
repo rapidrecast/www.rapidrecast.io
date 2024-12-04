@@ -17,7 +17,7 @@ defaultContentLanguage = "en"
 disableLanguages = ["de", "nl"]
 defaultContentLanguageInSubdir = false
 
-copyRight = "Copyright (c) 2020-2024 Przemyslaw Hugh Kaznowski"
+copyRight = "Copyright (c) 2024-2028 RapidRecast"
 
 [build.buildStats]
   enable = true
@@ -59,6 +59,7 @@ copyRight = "Copyright (c) 2020-2024 Przemyslaw Hugh Kaznowski"
 [permalinks]
   blog = "/blog/:slug/"
   docs = "/docs/:sections[1:]/:slug/"
+
 # docs = "/docs/1.0/:sections[1:]/:slug/"
 
 [minify.tdewolff.html]

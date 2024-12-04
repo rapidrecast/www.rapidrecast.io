@@ -8,7 +8,8 @@
     "create": "hugo new",
     "dev": "hugo server --disableFastRender --noHTTPCache",
     "format": "prettier **/** -w -c",
-    "build": "hugo --minify --gc",
+    "build": "npm run build:css && hugo --minify --gc",
+    "build:css": "postcss assets/css/tailwind.css -o assets/css/main.css",
     "preview": "vite preview --outDir public"
   },
   "dependencies": {
@@ -20,8 +21,14 @@
     "gethyas": "^2.4.2"
   },
   "devDependencies": {
+    "tailwindcss": "^3.0.0",
+    "postcss": "^8.0.0",
+    "autoprefixer": "^10.0.0",
+    "@fullhuman/postcss-purgecss": "^4.0.0",
+    "purgecss-whitelister": "^1.0.0",
     "prettier": "^3.2.5",
-    "vite": "^5.2.10"
+    "vite": "^5.2.10",
+    "postcss-cli": "^9.0.0"
   },
   "engines": {
     "node": ">=20.11.0"
