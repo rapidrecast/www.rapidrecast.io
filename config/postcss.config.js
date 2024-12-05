@@ -5,7 +5,6 @@ const whitelister = require('purgecss-whitelister');
 module.exports = {
     plugins: [
         autoprefixer(),
-        require("tailwindcss")("./config/tailwind.config.js"),
         purgecss({
             content: ['./hugo_stats.json'],
             extractors: [

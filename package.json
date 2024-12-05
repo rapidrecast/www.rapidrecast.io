@@ -10,7 +10,7 @@
     "format": "prettier **/** -w -c",
     "build": "hugo --minify --gc",
     "preview": "vite preview --outDir public",
-    "clean": "rimraf resources public"
+    "clean": "rimraf resources public .hugo_build.lock hugo_stats.json node_modules"
   },
   "dependencies": {
     "@hyas/doks-core": "^1.6.1",
