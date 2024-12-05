@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Satoshi';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: local('Satoshi'),
+  url('../fonts/woff2/Satoshi-Variable.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/woff/Satoshi-Variable.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 100 900;
+  src: local('Satoshi'),
+  url('../fonts/woff2/Satoshi-VariableItalic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('../fonts/woff/Satoshi-VariableItalic.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
