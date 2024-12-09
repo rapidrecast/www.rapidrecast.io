@@ -3,4 +3,7 @@
 node_modules
 public
 hugo_stats.json
+.idea
+resources
+
 
