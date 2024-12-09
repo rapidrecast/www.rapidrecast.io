@@ -28,8 +28,9 @@ The theme of this week is to progress towards getting demo videos out.
 ### 1. Created the Realtime Streaming API community, planning content for web/profile/community.
 
 The purpose of the community is to find people who are interested in the same topics - customers, early adopters, other vendors.
+
 While it is a good way to passively generate leads, I am adamant that it cannot become a branded community.
-If it becomes to "sales-y" then nobody will want to join.
+If it becomes too "sales-y" then nobody will want to join.
 
 ### 2. Greater focus on ICP and product offering
 
@@ -53,7 +54,7 @@ Hopefully things go smoothly despite that.
 
 ## Sales
 
-### Large financial company: streaming infra call
+### 1. Large financial company: streaming infra call
 
 A friend gave me an "in" to this call with a massive company.
 It's unlikely to progress much, but it is stil very important to have such calls.
@@ -71,15 +72,18 @@ This likely won't lead to a sale for the existing problem, since they are presse
 This does not exclude the product from being used on other projects internally though - hopefully, something can come from that.
 Even if it is just network expansion.
 
-### Large hardware company: integrations call
+### 2. Large hardware company: integrations call
 
 Another friend referral.
 
 This one is about integrating several systems that the team has internally.
 
-I am not thinking much will come of this - integrations projects can be extremly challenging.
+I am not thinking much will come of this - integrations projects can be extremely challenging.
 
 However, by listening to the use case intently, I can better prepare and prioritise features to make such conversations more productive.
+
+The client gets a perspective from someone working on the problem about existing solutions and how they can be leveraged.
+The client also gets tips on anti-patterns in such projects.
 
 ## Product
 
