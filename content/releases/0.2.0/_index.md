@@ -22,6 +22,10 @@ Release 0.2.0 is out!
 
 The release is already available for free from [cloud.rapidrecast.io](http://cloud.rapidrecast.io).
 
+The admin credentials are `admin` and password `admin-password`.
+
+The cloud API protocol has moved from port 80 to port 81 to accommodate the new Admin Console.
+
 This is quite a significant release as it sets the groundwork for the security and API.
 
 The download links are at the bottom of the page.
@@ -90,13 +94,13 @@ import base64
 import requests
 import sys
 
-def main(admin_port, proto_port, data):
-    print(f"Using admin-port {admin_port} and proto-port {proto_port}\n")
+def main(hostname, admin_port, proto_port, data):
+    print(f"Using hostname {hostname}, admin-port {admin_port}, and proto-port {proto_port}\n")
 
     # Step 1: Log in to /api/v1/auth and retrieve the JWT
     print("Step 1: Authenticate as admin")
     basic_auth = base64.b64encode(b"admin:admin-password").decode("utf-8")
-    auth_url = f"http://localhost:{admin_port}/api/v1/auth"
+    auth_url = f"http://{hostname}:{admin_port}/api/v1/auth"
     print(f"Equivalent curl command:\n"
           f"curl -X POST -H \"Authorization: Basic {basic_auth}\" -H \"Content-Type: application/json\" {auth_url}\n")
 
@@ -119,7 +123,7 @@ def main(admin_port, proto_port, data):
 
     # Step 2: POST to /api/v1/policy with the JWT
     print("Step 2: Allow anonymous users to create topics")
-    policy_url = f"http://localhost:{admin_port}/api/v1/policy"
+    policy_url = f"http://{hostname}:{admin_port}/api/v1/policy"
     policy_data = {"subject": "anon", "object": "topic-any", "action": "create"}
     print(f"Equivalent curl command:\n"
           f"curl -X POST -H \"Authorization: Bearer {jwt}\" -H \"Content-Type: application/json\" "
@@ -142,7 +146,7 @@ def main(admin_port, proto_port, data):
 
     # Step 3: Send POST request to /test-topic
     print("Step 3: Post a message as an anonymous user, creating the topic")
-    test_topic_post_url = f"http://localhost:{proto_port}/test-topic"
+    test_topic_post_url = f"http://{hostname}:{proto_port}/test-topic"
     print(f"Equivalent curl command:\n"
           f"curl -X POST -H \"Content-Type: application/json\" -d '{data}' {test_topic_post_url}\n")
 
@@ -160,7 +164,7 @@ def main(admin_port, proto_port, data):
 
     # Step 4: Send GET request to /test-topic
     print("Step 4: Consume the message from the topic")
-    test_topic_get_url = f"http://localhost:{proto_port}/test-topic"
+    test_topic_get_url = f"http://{hostname}:{proto_port}/test-topic"
     print(f"Equivalent curl command:\n"
           f"curl -X GET {test_topic_get_url}\n")
 
@@ -175,12 +179,13 @@ def main(admin_port, proto_port, data):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Run API test script.")
-    parser.add_argument("--admin-port", type=int, required=True, help="Port for admin API")
-    parser.add_argument("--proto-port", type=int, required=True, help="Port for the main API")
+    parser.add_argument("--hostname", type=str, default="cloud.rapidrecast.io", help="Hostname for the API")
+    parser.add_argument("--admin-port", type=int, default=80, help="Port for admin API (default: 80)")
+    parser.add_argument("--proto-port", type=int, default=81, help="Port for the main API (default: 81)")
     parser.add_argument("--data", type=str, required=True, help="JSON data for POST request to /test-topic")
 
     args = parser.parse_args()
-    main(args.admin_port, args.proto_port, args.data)
+    main(args.hostname, args.admin_port, args.proto_port, args.data)
 ```
 
 Find the downloads below.
