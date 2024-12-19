@@ -21,168 +21,58 @@ seo:
 
 # What is a release workflow
 
-As you develop software, you need to share a common understanding with the user of which point in time of development you are talking about.
-We call these points in time *versions*, and they can take on many forms, from names and single numbers to more structured formats, including dates.
+A software release is useful to track which version of the code is being used by your users.
+When a users says they are using "1.2.3" you know what features they have, and what bugs may exist (that have since been fixed).
 
-As you develop software, you will want a convenient way to increase the version number during a release so that you don't make a mistake anywhere.
+A release workflow on the other hand is a way of repeating steps in such a way that you know the end result will give a consistently valid version of your software.
 
-That is what a release pipeline is for - you indicate the version change you want to make to the software, and the pipeline takes care of the rest.
+# Semantic Versioning
 
-I am sharing with you a release workflow I have created and used across several projects, including RapidRecast.
+Rust any many other software vendors follow the semantic versioning format of version numbers.
 
-You should be able to copy it as-is, include a Personal Access Token under the project secrets as `RELEASE_TOKEN` and benefit from a convenient release cycle.
+Semantic versioning is an industry standard way of agreeing what users can expect when they change versions.
 
-# Pre-release workflow
+The version format of semantic versions follows the convention of using Major, Minor, and Patch numbers, separated with full-stops.
 
-The pre-release workflow must be run manually from Github Actions and bumps the local version of your Cargo project.
+## Patch releases
+Patch releases increment only the last number of the version.
+They indicate that no new features were added, and only changes to existing functionality were made in order to fix a shortcoming in the software.
 
-You can modify this step slightly so it pushes to [crates.io](https://crates.io).
+Often, clients should be able to upgrade their software to a patch without any testing or migration - even though it is still advised to do so.
 
-Running this workflow will result in a new tag in your repository with the new bumped version.
+## Minor releases
+Minor releases are designed to add features to your software.
+Incrementing the minor version number of your release number effectively resets the patch number.
+For example, doing a minor release on top of version `11.22.33` will create a release with version `11.23.0`.
 
-```yaml
-name: Pre-release to trigger before github release
+Clients upgrading to the next minor version should not see any issues, but should test the upgrade (on separate infrastructure before deploying, for example) in case new features have unexpectedly changed existing features.
+If new features change existing behaviour, then that would be considered a regression and is conventionally agreed not the right practice for a release.
 
-on:
-  workflow_dispatch:
-    inputs:
-      type:
-        description: 'Type of release (major/minor/patch)'
-        required: true
-        default: 'minor'
-      dry_run:
-        description: 'Dry run (true/false)'
-        required: true
-        default: true
+## Major releases
+Major releases are the most significant change a software can make.
+The major change indicates that users are likely to see breaking changes in their usage of the product.
+If you are removing features or behaviours, this tends to be done in major releases.
 
-env:
-  CARGO_TERM_COLOR: always
+When phasing out features, it is conventional to give a deprecation notice.
+That way users can stop using the old way of doing things and move to the new way on their own terms while not disrupting their planned work.
 
-jobs:
-  prepare-release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.RELEASE_TOKEN }}
+Clients upgrading to the next major release should absolutely test their deployments and usage of the software and should plan that it breaks things - users should have a contingency that the upgrade will fail.
 
-      - name: Set up Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+# Single click releases in Rust and GitHub Action Workflows
 
-      - name: Install cargo-release
-        run: cargo install cargo-release
+To simplify the release pipeline of RapidRecast, I have created the following workflow.
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
+You can use this workflow as you wish - it is very versatile and practical for practically all Rust projects.
 
-      - name: Update Cargo.toml version and push to Github
-        run: |
-          REL_TYPE=${{ github.event.inputs.type }}
-          DRY_RUN=${{ github.event.inputs.dry_run }}
-
-          # Execute version update
-          if [ "$DRY_RUN" = "false" ]; then
-            echo "Updating version in Cargo.toml"
-            cargo release --verbose --execute --no-confirm $REL_TYPE --no-publish --no-verify
-          else
-            echo "Dry run: showing changes without executing"
-            cargo release --verbose $REL_TYPE --no-publish --no-verify
-          fi
-```
-
-# Release workflow
-
-After completing the Pre-Release workflow, you can start a release from your Github project page.
-When you have created the release against the new version tag, the Release workflow will trigger and attach all platform artifacts you want to include.
+This project does not push to [crates.io](https://crates.io), since I only release a binary at the moment.
+To change that, you can modify the `Update Cargo.toml version and push to GitHub` step during the Pre-release job.
 
 ```yaml
-name: Release that is triggered from github releases
-
-on:
-  release:
-    types:
-      - published # Trigger only when a release is published
-
-env:
-  CARGO_TERM_COLOR: always
-
-jobs:
-  build-macos-13-intel:
-    runs-on: macos-13
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Build
-        run: cargo build --release --verbose
-
-  build-macos-14-arm64:
-    runs-on: macos-14
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Build
-        run: cargo build --release --verbose
-
-  build-windows:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Build
-        run: cargo build --release --verbose
-
-  build-linux:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Set up Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-      - name: Build
-        run: cargo build --release --verbose
-
-  upload-assets:
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
-          - macos-13
-          - macos-14
-          - windows-latest
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: taiki-e/upload-rust-binary-action@v1
-        with:
-          # (required) Comma-separated list of binary names (non-extension portion of filename) to build and upload.
-          # Note that glob pattern is not supported yet.
-          bin: rapidrecast
-          archive: $bin-$tag-$target
-          include: README.md,LICENSE
-          # (optional) On which platform to distribute the `.tar.gz` file.
-          # [default value: unix]
-          # [possible values: all, unix, windows, none]
-          tar: all
-          # (optional) On which platform to distribute the `.zip` file.
-          # [default value: windows]
-          # [possible values: all, unix, windows, none]
-          zip: all
-          # (required) GitHub token for uploading assets to GitHub Releases.
-          # Not using GITHUB_TOKEN because that didn't have enough permissions?
-          token: ${{ secrets.RELEASE_TOKEN }}
+...
 ```
 
 # Using the workflow
 
-The two workflows assume you are using Cargo and semantic versioning and building a binary.
+To use the workflow, add the file to your git repository under `.github/workflows/<any-file-name>.yml`.
 
-If you are making multiple binaries, open-source, or dynamic libraries, you can modify the same workflows to your needs.
-
-Now that you have this workflow, you can add it to any Rust project for effortless releases at the click of a button.
+Then, to perform a release, go to your Github project -> `Actions` -> `Release to Github` (left panel) -> `Run workflow` (right dropdown option).
