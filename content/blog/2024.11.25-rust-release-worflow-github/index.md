@@ -131,17 +131,6 @@ jobs:
         with:
           toolchain: stable
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '22'
-
-      - name: Install Tailwind
-        run: npm install
-
-      - name: Build Tailwind CSS
-        run: npx tailwindcss -i ./scss/input.css -o ./static/output.css
-
       - name: Build
         run: cargo build --verbose
 
@@ -192,17 +181,6 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '22'
-
-      - name: Install Tailwind
-        run: npm install
-
-      - name: Build Tailwind CSS
-        run: npx tailwindcss -i ./scss/input.css -o ./static/output.css
 
       - name: Install cargo-release
         run: |
@@ -275,17 +253,6 @@ jobs:
         with:
           toolchain: stable
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '22'
-
-      - name: Install Tailwind
-        run: npm install
-
-      - name: Build Tailwind CSS
-        run: npx tailwindcss -i ./scss/input.css -o ./static/output.css
-
       - name: Build Release
         run: cargo build --release --verbose
 
@@ -351,7 +318,13 @@ jobs:
 Follow these simple steps to integrate and use the workflow:
 
 ## Step 1: Add the Workflow File
+
 Save the [workflow file](https://github.com/rapidrecast/blog-post-snippets/blob/dd424b7c925b32e39f1b03d69dc888b29a35d73d/blog-20241125-rust-release-github-action-workflow/release.yml) in your repository under `.github/workflows/release.yml`.
+
+## Step 2: Create a Personal Access Token (PAT)
+
+Create a PAT that allows the workflow to perform pushes, make tags, and perform releases for you.
+Store the PAT in the project secrets as `RELEASE_TOKEN`.
 
 ## Step 2: Run the Workflow
 1. Go to your GitHub repository and navigate to the **Actions** tab.
