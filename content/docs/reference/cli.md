@@ -1,6 +1,6 @@
 ---
 title: "CLI Reference"
-description: ""
+description: "The Command Line Interface reference covers all things to do with the binary."
 summary: ""
 date: 2023-09-07T16:12:37+02:00
 lastmod: 2023-09-07T16:12:37+02:00

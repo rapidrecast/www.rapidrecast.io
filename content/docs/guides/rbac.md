@@ -1,6 +1,6 @@
 ---
 title: "Role-Based Access Control (RBAC)"
-description: "Defining security policies"
+description: "How the Authorization system works in RapidRecast."
 summary: ""
 date: 2023-09-07T16:04:48+02:00
 lastmod: 2023-09-07T16:04:48+02:00
@@ -60,12 +60,11 @@ The `anon` account is not allowed to have a password.
 
 ### Existing Objects
 
-The following Objects can be used in Policies:
+The full Objects list can be found in the [RBAC Reference]({{< ref "/docs/reference/rbac/_index.md#objects" >}}).
 
-| Object                                 | Description                                     |
-|----------------------------------------|-------------------------------------------------|
-| `topic-any:default-namespace`          | Any topic that can be pushed and consumed from. |
-| `topic:default-namespace:<topic-name>` | A specific topic by name.                       |
+### Existing Actions
+
+The full Actions list can be found in the [RBAC Reference]({{< ref "/docs/reference/rbac/_index.md#actions" >}}).
 
 ### Defining a Policy
 

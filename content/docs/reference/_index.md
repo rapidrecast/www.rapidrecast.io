@@ -1,6 +1,6 @@
 ---
-title: "Reference"
-description: ""
+title: "Product Reference"
+description: "The Product Reference is the primary documentation where you should find everything you want"
 summary: ""
 date: 2023-09-07T16:12:37+02:00
 lastmod: 2023-09-07T16:12:37+02:00
@@ -12,6 +12,6 @@ sidebar:
 seo:
   title: "" # custom title (optional)
   description: "" # custom description (recommended)
-  canonical: "" # custom canonical URL (optional)
+  canonical: "ref" # custom canonical URL (optional)
   noindex: false # false (default) or true
 ---

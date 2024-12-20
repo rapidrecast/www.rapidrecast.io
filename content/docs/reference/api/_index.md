@@ -1,6 +1,6 @@
 ---
-title: "API Reference"
-description: "Description of all API endpoints"
+title: "Admin API Reference"
+description: "The Admin API is used to configure and manage RapidRecast"
 summary: ""
 date: 2023-09-07T16:12:37+02:00
 lastmod: 2023-09-07T16:12:37+02:00

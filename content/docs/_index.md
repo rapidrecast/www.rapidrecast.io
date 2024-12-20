@@ -14,5 +14,5 @@ seo:
   noindex: false # false (default) or true
 ---
 
-Bear with me while I set up branding to format this better.
+Bear with me while I set up branding and then format this better.
 
