@@ -1,6 +1,6 @@
 ---
 title: "Guides"
-description: ""
+description: "Guides for how to achieve common tasks"
 summary: ""
 date: 2023-09-07T16:06:50+02:00
 lastmod: 2023-09-07T16:06:50+02:00
@@ -14,4 +14,6 @@ seo:
   noindex: false # false (default) or true
 ---
 
-Index of the guides.
+Guides lead you through a specific task you want to accomplish.
+
+If there is a guide you would like, please open a ticket on the [repository](https://github.com/rapidrecast/www.rapidrecast.io/issues/new).
