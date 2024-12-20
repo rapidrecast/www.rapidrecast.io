@@ -1,12 +1,14 @@
 ---
-title: "Docs"
-description: ""
+title: "API Reference"
+description: "Description of all API endpoints"
 summary: ""
-date: 2023-09-07T16:12:03+02:00
-lastmod: 2023-09-07T16:12:03+02:00
+date: 2023-09-07T16:12:37+02:00
+lastmod: 2023-09-07T16:12:37+02:00
 draft: false
-weight: 999
+weight: 900
 toc: true
+sidebar:
+  collapsed: true
 seo:
   title: "" # custom title (optional)
   description: "" # custom description (recommended)
@@ -14,5 +16,5 @@ seo:
   noindex: false # false (default) or true
 ---
 
-Bear with me while I set up branding to format this better.
+The API endpoints are available on the admin protocol.
 

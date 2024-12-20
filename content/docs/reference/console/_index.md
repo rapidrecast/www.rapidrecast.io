@@ -1,12 +1,14 @@
 ---
-title: "Example Guide"
-description: "Guides lead a user through a specific task they want to accomplish, often with a sequence of steps."
+title: "Admin Console Reference"
+description: "Admin Console Description"
 summary: ""
-date: 2023-09-07T16:04:48+02:00
-lastmod: 2023-09-07T16:04:48+02:00
+date: 2023-09-07T16:12:37+02:00
+lastmod: 2023-09-07T16:12:37+02:00
 draft: false
-weight: 810
+weight: 900
 toc: true
+sidebar:
+  collapsed: true
 seo:
   title: "" # custom title (optional)
   description: "" # custom description (recommended)
@@ -14,4 +16,4 @@ seo:
   noindex: false # false (default) or true
 ---
 
-Examples go here.
+Admin Console text.

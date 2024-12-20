@@ -1,18 +1,17 @@
 ---
-title: "Docs"
-description: ""
+title: "Schema Definition Language (SDL)"
+description: "Schema Definition Language (SDL) Reference"
 summary: ""
-date: 2023-09-07T16:12:03+02:00
-lastmod: 2023-09-07T16:12:03+02:00
+date: 2023-09-07T16:12:37+02:00
+lastmod: 2023-09-07T16:12:37+02:00
 draft: false
-weight: 999
+weight: 900
 toc: true
+sidebar:
+  collapsed: true
 seo:
   title: "" # custom title (optional)
   description: "" # custom description (recommended)
   canonical: "" # custom canonical URL (optional)
   noindex: false # false (default) or true
 ---
-
-Bear with me while I set up branding to format this better.
-
