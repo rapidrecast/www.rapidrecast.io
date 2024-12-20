@@ -17,7 +17,6 @@ Usage:
             placeholder="http://cloud.rapidrecast.io"
             oninput="updateCurlCommands()" />
 
-    <!-- User Input -->
     <label for="user-{{ .Get 0 }}" class="block text-sm font-medium text-gray-700">User</label>
     <input
             id="user-{{ .Get 0 }}"
@@ -26,7 +25,6 @@ Usage:
             placeholder="admin"
             oninput="updateCurlCommands()" />
 
-    <!-- Password Input -->
     <label for="passwd-{{ .Get 0 }}" class="block text-sm font-medium text-gray-700">Password</label>
     <input
             id="passwd-{{ .Get 0 }}"
@@ -35,7 +33,6 @@ Usage:
             placeholder="admin-password"
             oninput="updateCurlCommands()" />
 
-    <!-- Dynamic Curl Commands -->
     <div class="expressive-code">
         <figure class="frame is-terminal not-content">
             <figcaption class="header">
@@ -48,30 +45,37 @@ Usage:
                     </button>
                 </div>
                 <pre tabindex="0" class="chroma">
-          <code id="curlCommand-{{ .Get 0 }}" class="language-bash" data-lang="bash"><span class="line"><span class="cl"># Derive base64 from username and password
+                    <code id="curlCommand-{{ .Get 0 }}" class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+# Derive base64 from username and password
 encoded=$(echo -n "$credentials" | base64)
 
 # Authenticate against the API
-curl -X POST -H "Authorization: Basic $encoded" -H "Content-Type: application/json" http://cloud.rapidrecast.io
+curl -X POST -H "Authorization: Basic $encoded" -H "Content-Type: application/json" http://cloud.rapidrecast.io/api/v1/auth
 
 # Alternatively use the base64 directly
-curl -X POST -H "Authorization: Basic YWRtaW46YWRtaW4tcGFzc3dvcmQ=" -H "Content-Type: application/json" http://cloud.rapidrecast.io</span></span></code>
-        </pre>
+curl -X POST -H "Authorization: Basic YWRtaW46YWRtaW4tcGFzc3dvcmQ=" -H "Content-Type: application/json" http://cloud.rapidrecast.io/api/v1/auth
+                    </span></span></code>
+                </pre>
             </div>
         </figure>
     </div>
+
+    <!-- Execute and Show Result -->
+    <button onclick="invokeApi('{{ .Get 0 }}')" class="mt-4 px-4 py-2 rounded-lg shadow">Invoke API (Will fail because of CORS)</button>
+    <label for="response-{{ .Get 0 }}" class="block text-sm font-medium mt-4">Response</label>
+    <textarea
+            id="response-{{ .Get 0 }}"
+            class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            readonly></textarea>
 </div>
 
 <script>
-
     function updateCurlCommands() {
-        // Get the values from the input fields
         const url = document.getElementById("url-{{ .Get 0 }}").value || "http://cloud.rapidrecast.io";
-        const user= document.getElementById("user-{{ .Get 0 }}").value || "admin";
+        const user = document.getElementById("user-{{ .Get 0 }}").value || "admin";
         const password = document.getElementById("passwd-{{ .Get 0 }}").value || "admin-password";
         const encoded = btoa(`${user}:${password}`);
 
-        // Update the curl command dynamically
         const curlCommand = `# Derive base64 from username and password
 encoded=$(echo -n "${user}:${password}" | base64)
 
@@ -82,6 +86,28 @@ curl -X POST -H "Authorization: Basic $encoded" -H "Content-Type: application/js
 curl -X POST -H "Authorization: Basic ${encoded}" -H "Content-Type: application/json" ${url}/api/v1/auth
 `;
         document.getElementById("curlCommand-{{ .Get 0 }}").innerText = curlCommand;
+    }
+
+    async function invokeApi(id) {
+        const url = document.getElementById(`url-${id}`).value || "http://cloud.rapidrecast.io";
+        const user = document.getElementById(`user-${id}`).value || "admin";
+        const password = document.getElementById(`passwd-${id}`).value || "admin-password";
+        const encoded = btoa(`${user}:${password}`);
+
+        try {
+            const response = await fetch(`${url}/api/v1/auth`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Basic ${encoded}`,
+                    "Content-Type": "application/json",
+                },
+            });
+
+            const result = await response.text();
+            document.getElementById(`response-${id}`).value = result;
+        } catch (error) {
+            document.getElementById(`response-${id}`).value = `Error: ${error.message}`;
+        }
     }
 </script>
 
