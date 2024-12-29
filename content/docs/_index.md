@@ -14,4 +14,5 @@ seo:
   noindex: false # false (default) or true
 ---
 
-Index of docs.
+Bear with me while I set up branding and then format this better.
+
