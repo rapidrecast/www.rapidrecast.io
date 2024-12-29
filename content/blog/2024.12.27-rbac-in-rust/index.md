@@ -102,7 +102,7 @@ Policies therefore are ways of
 Subjects have no differentiation in the Casbin system - they are simply treated as strings.
 You have 2 options here - enforce string formats so that you enforce this.
 Alternatively, do not enforce string formats and let things flow as you want.
-You likely dont want that - users can find ways of predicting patterns and then you have no control over that.
+You likely don't want that - users can find ways of predicting patterns and then you have no control over that.
 
 ## Casbin and Rust
 
