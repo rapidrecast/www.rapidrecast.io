@@ -1,8 +1,15 @@
 {{ define "main" }}
 <section class="section container-fluid mt-n3 pb-3">
   <div class="row justify-content-center">
-    <div class="col-lg-12 text-center">
-      <h1>{{ .Title }}</h1>
+    <div class="col-lg-12 col-xl-11 text-center">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <span class="text-nowrap">
+            <img class="img-fluid h1-height" src="{{ "svgs/logo-just-colour.svg" | absURL }}" alt="RapidRecast" style="margin-right:0.7em; display:inline-block">
+            <h1 class="d-inline-block mb-0">{{ .Title }}</h1>
+          </spanc>
+        </div>
+      </div>
     </div>
     <div class="col-lg-9 col-xl-8 text-center">
       <p class="lead">{{ .Params.lead | safeHTML }}</p>

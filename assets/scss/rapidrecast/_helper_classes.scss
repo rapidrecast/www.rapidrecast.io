@@ -1,0 +1,5 @@
+.h1-height {
+  height: calc(var(--sl-text-h1) * var(--sl-line-height));
+  margin-bottom: calc(var(--sl-text-h1) );
+  width: auto;
+}
