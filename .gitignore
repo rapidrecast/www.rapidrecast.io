@@ -5,4 +5,5 @@ public
 hugo_stats.json
 resources
 .idea
+.DS_Store
 
