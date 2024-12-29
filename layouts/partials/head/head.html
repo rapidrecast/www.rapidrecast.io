@@ -2,10 +2,11 @@
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="debug-resource-hints">
   {{- if templates.Exists "partials/head/resource-hints.html" }}
     {{- partial "head/resource-hints" . }}
   {{- end }}
-  <meta name="debug-script-header-priorit">
+  <meta name="debug-script-header-priority">
   {{- if templates.Exists "partials/head/script-header-priority.html" }}
     {{- partial "head/script-header-priority" . }}
   {{- end }}
