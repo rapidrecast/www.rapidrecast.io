@@ -83,3 +83,6 @@ bgColor = "#ffffff"
 hint = "photo"
 quality = 85
 resampleFilter = "Lanczos"
+
+[params]
+scssDir = "assets/scss"

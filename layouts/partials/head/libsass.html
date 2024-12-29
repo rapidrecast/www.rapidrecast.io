@@ -3,8 +3,16 @@
 {{ if eq (hugo.Environment) "development" -}}
   {{ $options := (dict "targetPath" "main.css" "transpiler" "libsass" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
   {{ $css = resources.Get . | toCSS $options | resources.Fingerprint "sha512" -}}
+{{ else if eq (hugo.Environment) "debug" -}}
+  {{ $options := (dict "targetPath" "main.css" "transpiler" "libsass" "outputStyle" "compressed" "includePaths" (slice "node_modules" "assets/scss")) -}}
+  {{ printf "** Production SCSS Options **\n%s\n" $options -}}
+  {{ $css = resources.Get . | toCSS $options | postCSS (dict "config" "config/postcss.config.js") |  resources.Fingerprint "sha512" | resources.PostProcess -}}
+  {{ printf "** Production CSS **\n%s\n" $css -}}
+  {{ $css = resources.Get . | toCSS $options | resources.Fingerprint "sha512" -}}
+  {{ printf "** Actual CSS **\n%s\n" $css -}}
 {{ else -}}
   {{ $options := (dict "targetPath" "main.css" "transpiler" "libsass" "outputStyle" "compressed" "includePaths" (slice "node_modules")) -}}
-  {{ $css = resources.Get . | toCSS $options | postCSS (dict "config" "config/postcss.config.js") |  resources.Fingerprint "sha512" | resources.PostProcess -}}
+  {{/* $css = resources.Get . | toCSS $options | postCSS (dict "config" "config/postcss.config.js") |  resources.Fingerprint "sha512" | resources.PostProcess */}}
+  {{ $css = resources.Get . | toCSS $options | resources.Fingerprint "sha512" -}}
 {{ end -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">

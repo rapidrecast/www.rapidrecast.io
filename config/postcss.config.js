@@ -56,7 +56,12 @@ module.exports = {
                 'hiding',
                 'page-item',
                 'page-link',
-                ...whitelister(['./assets/scss/**/*.scss', './node_modules/@hyas/doks-core/assets/scss/components/_code.scss', './node_modules/@hyas/doks-core/assets/scss/components/_expressive-code.scss', './node_modules/@hyas/doks-core/assets/scss/common/_syntax.scss'])
+                ...whitelister(['./assets/scss/**/*.scss',
+                    // './node_modules/@hyas/doks-core/assets/scss/components/_code.scss',
+                    // './node_modules/@hyas/doks-core/assets/scss/components/_expressive-code.scss',
+                    // './node_modules/@hyas/doks-core/assets/scss/common/_syntax.scss'
+                    './node_modules/@hyas/doks-core/assets/scss/**/*.scss'
+                ])
             ]
         }),
     ]
