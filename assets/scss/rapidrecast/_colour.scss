@@ -1,0 +1,32 @@
+.rapid-gradient-text {
+  background: linear-gradient(90deg, #FF6838, #D1023C, #8482FF); /* 3-color gradient */
+  background-clip: text;
+  -webkit-background-clip: text; /* For Safari */
+  color: transparent; /* Makes only the gradient visible */
+  display: inline-block; /* Ensures the text behaves as a block for consistent gradient distribution */
+}
+
+.rapid-gradient-border {
+  position: relative;
+  padding: 0.5rem 1rem; /* Inner padding for content */
+  border-radius: 8px; /* Rounded corners */
+  //background: #fff; /* Background color inside the border */
+  z-index: 1; /* Ensure the content appears above the pseudo-element */
+}
+
+.rapid-gradient-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px; /* Match the main element's border radius */
+  padding: 2px; /* Thickness of the gradient border */
+  background: linear-gradient(90deg, #FF6838, #D1023C, #8482FF); /* Gradient for the border */
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor; /* For Safari */
+  mask-composite: exclude; /* Cuts out the inner part */
+  z-index: -1; /* Position the border behind the content */
+}

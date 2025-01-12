@@ -29,42 +29,21 @@
   {{ if eq $.Site.Language.LanguageName "English" }}
   <section class="section section-md section-features">
     <div class="container">
-      <div class="row justify-content-center text-center">
-        <div class="col-lg-5">
-          <h2 class="h4">Streaming, as you like it</h2>
-          <p>Create streams the way you want them: WebSockets, HTTP requests, Kafka, HTTP 2, HTTP 3, WebRTC, Spark, and many more.</p>
+        <div class="row justify-content-center text-center">
+          {{ range .Params.cards }}
+            {{ partial "landing/feature-block.html" . }}
+          {{ end }}
         </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Inbound, outbound</h2>
-          <p>Wire your components together and forget if they are services or clients. You can even use Cron Expressions to make 2 APIs stream to each other - without a background ticker publishing to RapidRecast.</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Synchronous or asynchronous?</h2>
-          <p>Synchronous requests are so convenient! Why not use RapidRecast to keep that simplicity?</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Scalability</h2>
-          <p>RapidRecast is built with scalability in mind. You won't need to explicitly declare partitions or shards. Just watch RapidRecast rebalance as replicas are added to the cluster.</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Request Batching</h2>
-          <p>If a single request takes 20ms, but a batch of 100 takes 30ms, then you would prefer to batch your requests, right? Gotcha fam.</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Rust all the way</h2>
-          <p>Fans of <a href="https://tourofrust.com/chapter_1_en.html">Ferris</a> and followers of <a href="https://youtu.be/Pw4VUHwfo2w?si=AqPs4l4iw1Fa3PXL&t=50">Crabulon</a> will agree this is exciting. Rust brings performance and memory-safety to RapidRecast, and underpins what makes this software so fast.</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Near-zero integration</h2>
-          <p>Integration is scary. That is why RapidRecast tries to keep things simple. You should be able to simply point your endpoints at the service and start streaming.</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Stability</h2>
-          <p>RapidRecast is rigorously tested, the same way databases are. Randomised tests explore any possible edge cases, while also validating correctness of data.</p>
-        </div>
-      </div>
     </div>
   </section>
+  {{ partial "landing/section-protocols.html" . }}
+  {{ partial "landing/section-server-client.html" . }}
+  {{ partial "landing/section-sync-async.html" . }}
+  {{ partial "landing/section-scalability.html" . }}
+  {{ partial "landing/section-request-batching.html" . }}
+  {{ partial "landing/section-rust.html" . }}
+  {{ partial "landing/section-zero-integration.html" . }}
+  {{ partial "landing/section-stability.html" . }}
   {{ end }}
 {{ end }}
 

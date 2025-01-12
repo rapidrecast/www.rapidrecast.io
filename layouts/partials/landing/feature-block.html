@@ -1,0 +1,12 @@
+<div class="col-lg-5 p-3">
+    <div class="rapid-gradient-border">
+        <h2 class="h4">
+            {{ if .Section }}
+                <a href="#{{ .Section }}" class="text-decoration-none">{{ .Title }}</a>
+            {{ else }}
+                {{ .Title }}
+            {{ end }}
+        </h2>
+        <p class="flex-fill">{{ .Description | safeHTML }}</p>
+    </div>
+</div>

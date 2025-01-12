@@ -1,0 +1,10 @@
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  color: inherit; /* Use the color of the parent header */
+  text-decoration: none; /* Remove default underline */
+}
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+  color: inherit; /* Keep the same color on hover */
+  text-decoration: none; /* Prevent underline on hover */
+}
