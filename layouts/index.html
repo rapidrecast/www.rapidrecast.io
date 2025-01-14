@@ -1,16 +1,12 @@
 {{ define "main" }}
 <section class="section container-fluid mt-n3 pb-3">
   <div class="row justify-content-center">
-    <div class="col-lg-12 col-xl-11">
-      <div class="container">
-        <div class="d-flex align-items-center justify-content-center">
-          <span class="text-nowrap ">
-            <img class="img-fluid h1-height" src="{{ "svgs/logo-just-colour.svg" | absURL }}" alt="RapidRecast" style="margin-right:0.7em; display:inline-block;">
-            <h1 class="d-inline-block mb-0">{{ .Title }}</h1>
-          </span>
-        </div>
-      </div>
+    <div class="col-lg-9 col-xl-8 text-center p-3">
+      <img class="h1-height d-inline flex-wrap-reverse" src="{{ "svgs/logo-just-colour.svg" | absURL }}" alt="RapidRecast" style="margin-right:0.7em; display:inline-block;"/>
+      <h1 class="d-inline text-nowrap">{{ .Title }}</h1>
     </div>
+  </div>
+  <div class="row justify-content-center">
     <div class="col-lg-9 col-xl-8 text-center">
       <p class="lead">{{ .Params.lead | safeHTML }}</p>
       <a class="btn btn-primary btn-cta rounded-pill btn-lg my-3" href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}" role="button">{{ i18n "get_started" }}</a>
@@ -29,6 +25,7 @@
   {{ if eq $.Site.Language.LanguageName "English" }}
   <section class="section section-md section-features">
     <div class="container">
+      <!-- Align content stretch and wrap?-->
         <div class="row justify-content-center text-center">
           {{ range .Params.cards }}
             {{ partial "landing/feature-block.html" . }}
