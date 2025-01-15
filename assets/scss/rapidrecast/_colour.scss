@@ -7,8 +7,11 @@
 }
 
 .rapid-gradient-border {
+  --border-padding: 2px;
+
   position: relative;
-  padding: 0.5rem 1rem; /* Inner padding for content */
+  //padding: 0.5rem 1rem; /* Inner padding for content */
+  padding: var(--border-padding);
   border-radius: 8px; /* Rounded corners */
   //background: #fff; /* Background color inside the border */
   z-index: 1; /* Ensure the content appears above the pseudo-element */
@@ -22,7 +25,8 @@
   right: 0;
   bottom: 0;
   border-radius: 8px; /* Match the main element's border radius */
-  padding: 2px; /* Thickness of the gradient border */
+  //padding: 2px; /* Thickness of the gradient border */
+  padding: var(--border-padding);
   background: linear-gradient(90deg, #FF6838, #D1023C, #8482FF); /* Gradient for the border */
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
