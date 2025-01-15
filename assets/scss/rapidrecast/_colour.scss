@@ -1,9 +1,9 @@
-.rapid-gradient-text {
-  background: linear-gradient(90deg, #FF6838, #D1023C, #8482FF); /* 3-color gradient */
-  background-clip: text;
-  -webkit-background-clip: text; /* For Safari */
-  color: transparent; /* Makes only the gradient visible */
-  display: inline-block; /* Ensures the text behaves as a block for consistent gradient distribution */
+ .rapid-gradient-text {
+  background: linear-gradient(90deg, #FF6838, #D1023C, #8482FF) !important; /* 3-color gradient */
+  background-clip: text !important;
+  -webkit-background-clip: text !important; /* For Safari */
+  color: transparent !important; /* Makes only the gradient visible */
+  display: inline-block !important; /* Ensures the text behaves as a block for consistent gradient distribution */
 }
 
 .rapid-gradient-border {

@@ -28,6 +28,7 @@
 // TODO change this to theme colours
 .svg-white {
   fill: white;
+  // Not correct, but it works for the Rust icon
   filter: invert(1);
 }
 
