@@ -5,6 +5,8 @@
             Most existing streaming systems expect you to manage intricate settings like partitions, regions, and replication levels.
             They assume you not only understand these controls but can configure them perfectly to ensure optimal replication, region affinity, and partitioning for your workloads.
         </p>
+        <img class="img-fluid float-start me-3 light-mode" src="{{ "graphics/landing/RapidRecast-Scale.svg" | relURL }}" style="width: 400px;"/>
+        <img class="img-fluid float-start me-3 dark-mode" src="{{ "graphics/landing/RapidRecast-Scale-dark.svg" | relURL }}" style="width: 400px;"/>
 
         <p>
             But isn’t this approach counterintuitive?
@@ -15,6 +17,12 @@
             RapidRecast takes this principle to its logical conclusion.
             Instead of burdening you with low-level configuration, you simply define your high-level requirements — like the degree of replication needed.
             From there, RapidRecast intelligently manages the rest, including partitioning, region distribution, and load balancing.
+        </p>
+
+        <p>
+            Beyond these optimizations, RapidRecast is cluster-aware, dynamically routing traffic to the appropriate nodes and handling potential redirections seamlessly.
+            This ensures your workloads are consumed efficiently, even in complex distributed environments.
+            Whether it's balancing traffic across clusters or redirecting requests for optimized processing, RapidRecast adapts to your infrastructure in real-time.
         </p>
 
         <p>

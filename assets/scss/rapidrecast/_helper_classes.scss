@@ -8,3 +8,29 @@
 .logo-font {
   font-family: var(--rr-font-header), serif;
 }
+
+[data-bs-theme=dark] .dark-mode {
+  display: inherit;
+}
+
+[data-bs-theme=light] .dark-mode {
+  display: none;
+}
+
+[data-bs-theme=dark] .light-mode {
+  display: none;
+}
+
+[data-bs-theme=light] .light-mode {
+  display: inherit;
+}
+
+// TODO change this to theme colours
+.svg-white {
+  fill: white;
+  filter: invert(1);
+}
+
+.svg-black {
+  fill: black;
+}
