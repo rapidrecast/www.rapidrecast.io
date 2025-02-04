@@ -16,7 +16,7 @@ seo:
 
 # Downloading RapidRecast
 
-Pick up the latest release from the [Releases Page](http://localhost:1313/releases/).
+Pick up the latest release from the [Releases Page]({{< ref "/releases/" >}}).
 
 Download for the appropriate platform from the table at the bottom of the release page.
 
