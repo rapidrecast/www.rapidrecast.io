@@ -23,7 +23,14 @@ seo:
 
 ## Rust, Tower, and protocol implementations
 
-If you have dabbled in Rust, you may have encountered Tower.
+Building RapidRecast requires precise control over the protocols I provide.
+But control alone isn't enough—I also want these protocols to be intuitive, standardised, and thoroughly tested.
+
+To achieve this, I created [Proto-Tower](https://github.com/rapidrecast/proto-tower) — a framework that provides standardized interfaces for protocols while maintaining fine-grained control over their behavior.
+
+But anyway... *record scratch*.
+
+If you have dabbled in Rust, you may have encountered [Tower](https://docs.rs/tower/latest/tower/).
 Tower is a framework that allows people to build protocol handling via Services.
 It also allows for the building of middleware that intercepts requests via Layers.
 
