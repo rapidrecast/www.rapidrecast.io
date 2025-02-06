@@ -13,6 +13,7 @@ contributors:
 pinned: false
 homepage: false
 toc: true
+image: "feature-blog-20250206-tower-patterns.png"
 seo:
   title: "Design Patterns in Rust Tower"
   description: "Design Patterns in Rust Tower"
@@ -54,6 +55,15 @@ You can equally apply this to any function you want to wrap in a middleware.
 One example would be throttling requests to a channel that you send and receive from.
 {{< /callout >}}
 
+{{< image/img-dark-light alt="bla"
+light="graphics/blog/20250206-tower-patterns/Rust-Tower-Basic-Pattern.svg" 
+dark="graphics/blog/20250206-tower-patterns/Rust-Tower-Basic-Pattern-dark.svg"
+>}}
+
+The diagram above is fairly simple as far as Tower goes.
+You get an input from the caller in red.
+The Layer transforms it and sends green input to the internal Service.
+The same happens on the way back when the futures return.
 
 [Implementation of BasicPatternService](https://github.com/rapidrecast/blog-post-snippets/blob/dfe575568266f56da6dc39d0a26c84869efd0a5b/blog-20250206-tower-patterns/src/pattern_basic.rs#L27-L51)
 ```rust
@@ -109,6 +119,23 @@ If you are a server handling a protocol, you would accept a Read and Write pair 
 The Read and Write pair would likely be sent downstream if you are a client handling a protocol.
 
 Sending the Read and Write pair this way is a recommendation; you can structure your code however you like.
+
+{{< image/img-dark-light alt="bla"
+light="graphics/blog/20250206-tower-patterns/Rust-Tower-IO-Pattern.svg"
+dark="graphics/blog/20250206-tower-patterns/Rust-Tower-IO-Pattern-dark.svg"
+>}}
+
+This pattern has a bit more nuance to it.
+We can see that we no longer are returning values.
+The caller sends a Read and Write interface marked in red.
+This is the entire bridge of communication.
+
+In the provided example these would be tokio AsyncReadExt and AsyncWriteExt implementations - we have kept them generic.
+You would call the Layer with the Read and Write pair if you are accepting a network connection and want to handle it.
+Then the inner Service would receive translated protocol messages using any of the other patterns.
+
+The example also covers how a client would behave.
+By sending a Read and Write pair to the internal Service, the data can be relayed to a network connection.
 
 [Implementation of IO Pattern](https://github.com/rapidrecast/blog-post-snippets/blob/dfe575568266f56da6dc39d0a26c84869efd0a5b/blog-20250206-tower-patterns/src/pattern_io.rs#L20-L97)
 ```rust
@@ -230,6 +257,18 @@ async fn io_example() {
 This pattern is very similar to the I/O Pattern, but instead of using a Read and Write pair, you use a Receiver and Sender pair.
 The most common case is when you have known types (deserialized requests or responses) and need to translate them.
 
+{{< image/img-dark-light alt="bla"
+light="graphics/blog/20250206-tower-patterns/Rust-Tower-Channel-Pattern.svg"
+dark="graphics/blog/20250206-tower-patterns/Rust-Tower-Channel-Pattern-dark.svg"
+>}}
+
+We can see that the diagram is practically identical to the I/O Pattern before.
+This would have the inverse application though.
+
+When a Receiver and Sender pair are received, we can interpret them as commands and serialise to a protocol, like a client would.
+
+When we are forwarding a Receiver and Sender pair, we are effectively filling the role of the translator, much like a server would.
+
 [Implementation of Channel Pattern](https://github.com/rapidrecast/blog-post-snippets/blob/dfe575568266f56da6dc39d0a26c84869efd0a5b/blog-20250206-tower-patterns/src/pattern_chan.rs#L19-L82)
 ```rust
 impl<InnerService, InputType, OutputType> Service<(Receiver<InputType>, Sender<InputType>)> for ChannelPatternService<InnerService, OutputType>
@@ -338,6 +377,22 @@ An example may be when you provide a client with the underlying Service, which p
 The primary benefit of this approach (as opposed to the I/O Pattern and Channel Patterns) is that you do not need to spawn the inner Service.
 Not spawning the inner Service is a nice choice for people working in embedded environments.
 
+{{< image/img-dark-light alt="bla"
+light="graphics/blog/20250206-tower-patterns/Rust-Tower-Handler-Pattern.svg"
+dark="graphics/blog/20250206-tower-patterns/Rust-Tower-Handler-Pattern-dark.svg"
+>}}
+
+As mentioned, this contradicts the true intent of how Tower should be used.
+However, there may be cases where the pattern is useful.
+
+The diagram demonstrates that we would receive an interface - this could be either acting as a client or as a server.
+The roles aren't fixed.
+
+The other scenario (the read Handler) is where the inner Service provides a Handler.
+Hypothetically, we could send a Handler to the inner Service.
+The inner Service could treat the provided interface a client, and in response return a server request handler.
+That way the entire loop of the protocol can be covered without using tokio spawn.
+
 [Implementation of Handler Pattern](https://github.com/rapidrecast/blog-post-snippets/blob/dfe575568266f56da6dc39d0a26c84869efd0a5b/blog-20250206-tower-patterns/src/pattern_handler.rs#L27-L67)
 ```rust
 impl<InnerService, InputHandler, OutputHandler, Message> Service<InputHandler> for HandlerPatternService<InnerService, OutputHandler, Message>
@@ -406,6 +461,21 @@ The Injector Pattern is a convenient way to solve two problems:
 
 It is worth highlighting that Tower is designed so that protocol upgrades are handled by a separate Layer that either catches and consumes input or forwards it onto the Service.
 However, you may still want to use this pattern in certain situations, such as when Layers or Services don't allow such flexibility.
+
+{{< image/img-dark-light alt="bla"
+light="graphics/blog/20250206-tower-patterns/Rust-Tower-Injector-Pattern.svg"
+dark="graphics/blog/20250206-tower-patterns/Rust-Tower-Injector-Pattern-dark.svg"
+>}}
+
+Similarly to the Handler Pattern, the Injector Pattern accepts a Handler (blue).
+The handler would be provided during the construction of the Layer.
+
+The difference between sending Handlers via the Tower calls and having them provided at Layer construction may seem marginal, but it has the benefit that Services do not need to think of the existence of the interfaces.
+
+For the example, the rest of the tower stack is fairly simple and purely demonstrative.
+
+We receive input (green) from the caller, and we make a call to the internal Service (blue input and red output).
+Nothing fancy - and that's the point. The complexity was handled by the Layer using the provided Handler.
 
 [Implementation of Injector Pattern](https://github.com/rapidrecast/blog-post-snippets/blob/dfe575568266f56da6dc39d0a26c84869efd0a5b/blog-20250206-tower-patterns/src/pattern_injected.rs#L24-L55)
 ```rust

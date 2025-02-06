@@ -7,17 +7,22 @@
       {{ partial "main/blog-meta.html" . }}
     </div>
   </div>
+  <!-- imageSingle is true 2025/02/06 -->
   {{ if site.Params.doks.imageSingle -}}
-    {{- $images := .Resources.ByType "image" -}}
-    {{- $featured := $images.GetMatch "*feature*" -}}
-    {{- if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end -}}
+    {{- $featured := .Params.image -}} <!-- Prioritize front matter image -->
+    {{- if not $featured -}}
+      {{- $images := .Resources.ByType "image" -}}
+      {{- $featured := $images.GetMatch "*feature*" -}}
+      {{- if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end -}}
+    {{- end -}}
     {{- if $featured -}}
-      <div class="col-md-13">
+      <!-- This used to be col-md-13 but I changed it to match content size -->
+      <div class="col-md-9">
         {{ partial "picture" (dict
         "page" .
         "src" $featured
         "alt" .Title
-        "class" "img-post-single rounded-0"
+        "class" "img-post-single rounded-2"
         )}}
       </div>
     {{ end -}}
@@ -25,10 +30,10 @@
   <div class="col-md-12 col-lg-9">
     {{ with .Params.summary -}}<p class="lead">{{ . }}</p>{{ end -}}
     {{ if .TableOfContents }}
-    <div class="table-of-contents card mb-4 p-3">
-      <h4>Table of Contents</h4>
-      {{ .TableOfContents }}
-    </div>
+      <div class="table-of-contents card mb-4 p-3">
+        <h4>Table of Contents</h4>
+        {{ .TableOfContents }}
+      </div>
     {{ end }}
     {{ .Content }}
     {{ if .Params.tags -}}
