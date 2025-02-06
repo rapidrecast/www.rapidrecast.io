@@ -10,6 +10,10 @@ paginate = 5
 
 
 [markup]
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 6
+    ordered = true
   [markup.highlight]
     anchorLineNos = false
     codeFences = true
