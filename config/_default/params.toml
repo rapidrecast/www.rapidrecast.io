@@ -136,3 +136,6 @@ mainSections = ["docs"]
     newsArticle = [] # NewsArticle sections
     blogPosting = ["blog"] # BlogPosting sections
     product = [] # Product sections
+
+[rapidrecast]
+	showPricing = false
